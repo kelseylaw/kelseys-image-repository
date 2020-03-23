@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    debugger
     @users = User.all
   end
 
@@ -24,7 +25,6 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    byebug
     @user = User.new(user_params)
 
     respond_to do |format|
