@@ -5,6 +5,24 @@
   <h1>Images</h1>
   <br>
 
+  <h3>Filter Images</h3>
+  <%= form_with(url: images_path, method: "get", local: true) do |form| %>
+    <div class="form-group form-inline">
+        <label for="title"><b>Title:</b></label>
+        <%= form.text_field :title, class: "form-control mx-3", id: "title" %>
+        <label for="description"><b>Description:</b></label>
+        <%= form.text_field :description, class: "form-control mx-3", id: "description" %>
+        <label for="username"><b>Author Username:</b></label>
+        <%= form.text_field :username, class: "form-control mx-3", id: "username" %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit "Submit", class: "btn btn-primary", id: "submit" %>
+      <%= button_to 'Clear Filters', images_path, :class => "btn btn-secondary" %>
+    </div>
+  <% end %>
+  <br>
+
   <table class="table table-striped">
     <thead class="thead-dark">
       <tr>

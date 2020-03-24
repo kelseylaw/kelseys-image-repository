@@ -4,7 +4,10 @@ class ImagesController < ApplicationController
   # GET /images
   # GET /images.json
   def index
-    @images = Image.where(public: true)
+    @images = Image.filter_public
+    @images = @images.filter_title(params[:title]) if params[:title].present?
+    @images = @images.filter_description(params[:description]) if params[:description].present?
+    @images = @images.filter_user(params[:username]) if params[:username].present?
   end
 
   # GET /images/1
@@ -71,13 +74,13 @@ class ImagesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    # Sets selected image by ID
     def set_image
       @image = Image.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
+    # Trusted parameters for requests
     def image_params
-      params.require(:image).permit(:title, :description, :user_id, :picture, :public)
+      params.require(:image).permit(:title, :description, :user_id, :picture, :public, :username)
     end
 end
