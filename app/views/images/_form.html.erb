@@ -1,8 +1,8 @@
+<div class="container">
 <%= form_with(model: image, local: true, html: { multipart: true }) do |form| %>
   <% if image.errors.any? %>
-    <div id="error_explanation">
+    <div class="alert alert-danger" id="error_explanation">
       <h2><%= pluralize(image.errors.count, "error") %> prohibited this image from being saved:</h2>
-
       <ul>
         <% image.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -11,24 +11,31 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+  <div class="form-group">
+      <label for="title"><b>Title</b></label>
+      <%= form.text_field :title, class: "form-control", id: "title" %>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
+  <div class="form-group">
+      <label for="description"><b>Description</b></label>
+      <%= form.text_field :description, class: "form-control", id: "description" %>
   </div>
 
-  <div class="field">
-    <%= form.label :picture, :class => 'control-label' %>
+  <div class="form-check">
+      <%= form.check_box :public, class: "form-check-input", id: "public" %>
+      <label for="username"><b>Share with Public</b></label>
+  </div>
+
+  <div class="form-group">
+    <label for="picture"><b>Upload Image</b></label>
     <div class="image-input">
-      <%= form.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+      <%= form.file_field :picture, class: "form-control-file", id: "picture", accept: 'image/jpeg,image/gif,image/png' %>
     </div>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Save", class: "btn btn-primary", id: "save" %>
   </div>
 <% end %>
+
+</div>

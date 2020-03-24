@@ -1,24 +1,28 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <% if notice %>
+    <div class="alert alert-info"><%= notice %></div>
+  <% end %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @image.title %>
-</p>
+  <p>
+    <strong>Title:</strong>
+    <%= @image.title %>
+  </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @image.description %>
-</p>
+  <p>
+    <strong>Description:</strong>
+    <%= @image.description %>
+  </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @image.user_id %>
-</p>
+  <p>
+    <strong>User:</strong>
+    <%= @image.user_id %>
+  </p>
 
-<p>
-  <strong>Picture:</strong>
-  <%= image_tag @image.picture %>
-</p>
+  <p>
+    <strong>Picture:</strong>
+    <%= image_tag @image.picture %>
+  </p>
 
-<%= link_to 'Edit', edit_image_path(@image) %> |
-<%= link_to 'Back', images_path %>
+  <%= link_to 'Edit Image', edit_image_path(@image) %>
+</div>
+

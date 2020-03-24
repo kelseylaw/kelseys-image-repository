@@ -1,17 +1,24 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
-<%= form_with(local: true, url: login_path) do |form| %>
-  <div class="field">
-    <%= form.label :username %>
-    <%= form.text_field :username %>
-  </div>
+<div class="container">
+  <% if notice %>
+    <div class="alert alert-info"><%= notice %></div>
+  <% end %>
+  
+  <h1>Log In to The Cat Gallery</h1>
+  <%= form_with(local: true, url: login_path) do |form| %>
+  <div class="container">
+    <div class="form-group">
+        <label for="username"><b>Username</b></label>
+        <%= form.text_field :username, class: "form-control", id: "username" %>
+      </div>
 
-  <div class="field">
-    <%= form.label :password %>
-    <%= form.password_field :password %>
-  </div>
+      <div class="form-group">
+        <label for="password"><b>Password</b></label>
+        <%= form.password_field :password, class: "form-control", id: "password" %>
+      </div>
 
-  <div class="actions">
-    <%= form.submit %>
+      <div class="form-group">
+        <%= form.submit "Log In", class: "btn btn-primary", id: "submit" %>
+      </div>
   </div>
-<% end %>
+  <% end %>
+</div>

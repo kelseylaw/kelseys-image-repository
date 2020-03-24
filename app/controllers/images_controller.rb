@@ -4,7 +4,7 @@ class ImagesController < ApplicationController
   # GET /images
   # GET /images.json
   def index
-    @images = Image.all
+    @images = Image.where(public: true)
   end
 
   # GET /images/1
@@ -25,16 +25,17 @@ class ImagesController < ApplicationController
   # POST /images.json
   def create
     @image = Image.new(image_params)
-    @image.user_id = 1
+    @image.user_id = current_user.id
     resized_image = MiniMagick::Image.new(image_params[:picture].tempfile.path)
-    resized_image.resize('200x200')
+    resized_image.resize('400x400')
+    debugger
 
     respond_to do |format|
       if @image.save
         format.html { redirect_to @image, notice: 'Image was successfully created.' }
         format.json { render :show, status: :created, location: @image }
       else
-        format.html { render :new }
+        format.html { render :new, notice: 'Image was unable to be saved.' }
         format.json { render json: @image.errors, status: :unprocessable_entity }
       end
     end
@@ -77,6 +78,6 @@ class ImagesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def image_params
-      params.require(:image).permit(:title, :description, :user_id, :picture)
+      params.require(:image).permit(:title, :description, :user_id, :picture, :public)
     end
 end

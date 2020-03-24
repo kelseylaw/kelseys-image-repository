@@ -1,6 +1,9 @@
-<h1>Editing Image</h1>
+<div class="container">
+  <h1>Edit Image</h1>
 
-<%= render 'form', image: @image %>
+  <td><%= image_tag @image.picture %></td>
 
-<%= link_to 'Show', @image %> |
-<%= link_to 'Back', images_path %>
+  <%= render 'form', image: @image %>
+
+  <%= link_to 'Back to Image', @image %>
+</div>

@@ -3,14 +3,12 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(username: params[:username])
-    byebug
-    if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
+    @user = User.find_by(username: params[:username])
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
       redirect_to root_path
     else
-      format.html { render :new }
-      format.json { render json: @user.errors, status: :unprocessable_entity }
+      format.html { redirect_to login_path, notice: 'Login failed. Incorrect username or password.' }
     end
   end
 

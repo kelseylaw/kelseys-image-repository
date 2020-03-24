@@ -1,9 +1,42 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <h1>Profile</h1>
+  <% if notice %>
+    <div class="alert alert-info"><%= notice %></div>
+  <% end %>
+  
+  <p>
+    <strong>Username:</strong>
+    <%= @user.username %>
+  </p>
 
-<p>
-  <strong>Username:</strong>
-  <%= @user.username %>
-</p>
+  <% if logged_in? && @user.id == current_user.id %>
+    <%= link_to 'Edit Profile', edit_user_path(@user) %>
+  <% end %>
+  <h2><br>Images</h2>
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>Image</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Actions</th>
+        <th colspan="4"></th>
+      </tr>
+    </thead>
 
-<%= link_to 'Edit Profile', edit_user_path(@user) %> |
-<%= link_to 'Home', root_path %>
+    <tbody>
+      <% @images.each do |image| %>
+        <tr>
+          <td><%= image_tag image.picture %></td>
+          <td><%= image.title %></td>
+          <td><%= image.description %></td>
+          <td><%= link_to 'Show', image %></td>
+          <% if logged_in? && @user.id == current_user.id %>
+            <td><%= link_to 'Edit', edit_image_path(image) %></td>
+            <td><%= link_to 'Delete', image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,27 +1,29 @@
-<%= form_with(model: user, local: true) do |form| %>
-  <% if user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+<div class="container">
+  <%= form_with(model: user, local: true) do |form| %>
+    <% if user.errors.any? %>
+      <div class="alert alert-danger" id="error_explanation">
+        <h3><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h3>
 
-      <ul>
-        <% user.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <label for="username"><b>Username</b></label>
+      <%= form.text_field :username, class: "form-control", id: "username" %>
+    </div>
+
+    <div class="form-group">
+      <label for="password"><b>Password</b></label>
+      <%= form.password_field :password, class: "form-control", id: "password" %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit "Save", class: "btn btn-primary", id: "save" %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :username %>
-    <%= form.text_field :username %>
-  </div>
-
-  <div class="field">
-    <%= form.label :password %>
-    <%= form.password_field :password %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
