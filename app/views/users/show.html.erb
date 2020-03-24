@@ -8,6 +8,10 @@
     <strong>Username:</strong>
     <%= @user.username %>
   </p>
+  <p>
+    <strong>Account Created:</strong>
+    <%= @user.created_at %>
+  </p>
 
   <% if logged_in? && @user.id == current_user.id %>
     <%= link_to 'Edit Profile', edit_user_path(@user) %>

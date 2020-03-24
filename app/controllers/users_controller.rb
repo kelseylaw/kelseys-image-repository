@@ -1,21 +1,25 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
+  # Renders the page for displaying the selected User record by ID, and its associated Image records
   # GET /users/1
   # GET /users/1.json
   def show
     @images = @user.images
   end
 
+  # Renders the page for creating a new User record
   # GET /users/new
   def new
     @user = User.new
   end
 
+  # Renders the page for modifying the selected User record
   # GET /users/1/edit
   def edit
   end
 
+  # Creates a new User record with the given parameters and saves it to the database
   # POST /users
   # POST /users.json
   def create
@@ -33,6 +37,7 @@ class UsersController < ApplicationController
     end
   end
 
+  # Modifies the selected User record with the given parameters and saves it to the database
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
@@ -48,7 +53,7 @@ class UsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    # Defines the selected User record for the controller, default is the logged-in User record
     def set_user
       if params[:id]
         @user = User.find(params[:id])
@@ -57,7 +62,7 @@ class UsersController < ApplicationController
       end
     end
 
-    # Only allow a list of trusted parameters through.
+    # Specifies the trusted parameters for the ImagesController
     def user_params
       params.require(:user).permit(:username, :password, :admin)
     end
