@@ -4,8 +4,13 @@ one:
   title: MyString
   description: MyText
   user: one
+  picture: MyPicture
+  public: true
 
 two:
   title: MyString
   description: MyText
   user: two
+  picture: MyPicture
+  public: true
+

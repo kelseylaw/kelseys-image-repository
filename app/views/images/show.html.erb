@@ -20,7 +20,9 @@
 
   <p>
     <strong>Picture:</strong>
-    <%= image_tag @image.picture %>
+    <% if @image.picture.attached? %>
+      <%= image_tag @image.picture %>
+    <% end %>
   </p>
 
   <%= button_to 'Edit Image', edit_image_path, method: :get, :class => "btn btn-primary" %>

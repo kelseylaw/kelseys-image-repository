@@ -1,7 +1,9 @@
 <div class="container">
   <h1>Edit Image</h1>
 
-  <td><%= image_tag @image.picture %></td>
-
+  <% if @image.picture.attached? %>
+    <td><%= image_tag @image.picture %></td>
+  <% end %>
+  
   <%= render 'form', image: @image %>
 </div>

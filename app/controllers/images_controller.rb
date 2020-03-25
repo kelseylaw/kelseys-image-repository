@@ -34,9 +34,9 @@ class ImagesController < ApplicationController
   # POST /images.json
   def create
     @image = Image.new(image_params)
-    @image.user_id = current_user.id
+    @image.user_id = current_user&.id
     if image_params[:picture].present?
-      resized_image = MiniMagick::Image.new(image_params[:picture].tempfile.path)
+      resized_image = MiniMagick::Image.new(image_params[:picture].path)
       resized_image.resize('400x400')
     end
 
