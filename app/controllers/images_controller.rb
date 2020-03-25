@@ -35,11 +35,13 @@ class ImagesController < ApplicationController
   def create
     @image = Image.new(image_params)
     @image.user_id = current_user.id
-    resized_image = MiniMagick::Image.new(image_params[:picture].tempfile.path)
-    resized_image.resize('400x400')
+    if image_params[:picture].present?
+      resized_image = MiniMagick::Image.new(image_params[:picture].tempfile.path)
+      resized_image.resize('400x400')
+    end
 
     respond_to do |format|
-      if @image.save
+      if image_params[:picture].present? && @image.save
         format.html { redirect_to @image, notice: 'Image was successfully created.' }
         format.json { render :show, status: :created, location: @image }
       else

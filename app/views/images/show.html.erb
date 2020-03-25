@@ -23,6 +23,6 @@
     <%= image_tag @image.picture %>
   </p>
 
-  <%= button_to 'Edit Image', edit_image_path, :class => "btn btn-primary" %>
+  <%= button_to 'Edit Image', edit_image_path, method: :get, :class => "btn btn-primary" %>
 </div>
 

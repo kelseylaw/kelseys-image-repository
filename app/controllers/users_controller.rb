@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @images = @user.images
+    @images = @user.images.order("created_at DESC")
   end
 
   # Renders the page for creating a new User record
@@ -64,6 +64,6 @@ class UsersController < ApplicationController
 
     # Specifies the trusted parameters for the ImagesController
     def user_params
-      params.require(:user).permit(:username, :password, :admin)
+      params.require(:user).permit(:username, :password)
     end
 end
