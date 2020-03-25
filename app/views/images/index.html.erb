@@ -18,7 +18,7 @@
 
     <div class="actions">
       <%= form.submit "Submit", class: "btn btn-primary", id: "submit" %>
-      <%= button_to 'Clear Filters', images_path, :class => "btn btn-secondary" %>
+      <%= button_to 'Clear Filters', images_path, method: :get, :class => "btn btn-secondary" %>
     </div>
   <% end %>
   <br>

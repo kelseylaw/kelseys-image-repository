@@ -61,6 +61,7 @@ rails s
 ## Things I would have loved to add to the application if I had more time
 - Support for multiple-image uploading
 - Seeded data so that someone who clones my repo has example data on the app from the start
+- Deploy the app to a cloud platform (like Heroku) to build/run the app remotely
 - Grid view for viewing images instead of a tabular format
 - More complex filtering and querying for images
 - Support for profile photos
