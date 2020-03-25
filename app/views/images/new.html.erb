@@ -1,8 +1,9 @@
 <div class="container">
+  <% if notice %>
+    <div class="alert alert-info"><%= notice %></div>
+  <% end %>
   <h1>New Image</h1>
 
   <%= render 'form', image: @image %>
-
-  <%= link_to 'Back', images_path %>
 </div>
 
